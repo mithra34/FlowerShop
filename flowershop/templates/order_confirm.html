@@ -1,0 +1,83 @@
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="form-style-5">
+<form method="POST" action="{% url 'ordered' %}" data-cities-url="{% url 'ajax_load_cities' %}" id="customerform" novalidate >
+       {% csrf_token %}
+<!--      {{ form.as_p }}-->
+<fieldset>
+<legend><span class="number">1</span> Order Info</legend>
+<input type="text" name="field1" placeholder="Your Name *">
+  <input type="text" name="field" placeholder="Your Mobie No*">
+<input type="email" name="field2" placeholder="Your Email *">
+<textarea name="field3" placeholder="Address"></textarea>
+<label for="district">District:</label>
+<select id="district" name="field4">
+    <option value="">---------</option>
+{% for branches in branch %}
+
+    <option value="{{branches.id}}">{{branches}}</option>
+
+
+{% endfor %}
+
+
+</select>
+  <label for="Location">Location:</label>
+  <select id="Location" name="field5">
+
+<option value=""></option>
+
+
+
+
+
+
+
+</select>
+</fieldset>
+<fieldset>
+<legend><span class="number">2</span> Order Info</legend>
+<select id="flowers" name="field6" >
+    <option value="">---------</option>
+{% for f in flower %}
+
+    <option value="{{flower}}">{{f}}-Rs.{{f.price}}</option>
+
+
+{% endfor %}
+</select>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+</fieldset>
+<input type="submit" value="Shop" >
+
+</form>
+
+<input type="button" value="Log Out" class="btn btn-primary" onclick="location.href='{% url 'logout' %}'">
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#district").change(function () {
+        const url = $("#customerform").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countryId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url:url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'country_id': countryId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+              $("#Location").html(data);  // replace the contents of the city input with the data that came from the server
+<!--                let html_data = '<option value="">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>';-->
+<!--                data.forEach(function (subname) {-->
+<!--                    html_data += `<option value="${subname.id}">${subname}</option>`-->
+<!--                });-->
+<!--                console.log(html_data);-->
+<!--                $("#Location").html(html_data);-->
+            }
+        });
+
+    });
+</script>

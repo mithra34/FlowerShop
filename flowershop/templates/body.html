@@ -1,0 +1,17 @@
+{% load static %}
+{% block body %}
+<div class="card text-center">
+  <div class="card-header">
+
+  </div>
+  <div class="card-body" >
+    <img src="{% static 'img/body.jpg' %}" class="card-img" alt="...">
+
+    <h5 class="card-title"></h5>
+    <p class="card-text">To share a flower for share happiness </p>
+    <a href="{% url 'login'  %}" class="btn btn-primary">Shop Now</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+{% endblock %}

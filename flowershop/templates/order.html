@@ -1,0 +1,19 @@
+{% load static %}
+ <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block body %}
+<div class="card text-center">
+  <div class="card-header"><h2>You Can Order Here</h2>
+
+  </div>
+  <div class="card-body" >
+    <img src="{% static 'img/bo.jpg' %}" class="card-img" alt="...">
+
+    <h5 class="card-title"></h5>
+    <p class="card-text"></p>
+    <a href="{% url 'order_confirm' %}" ><button id="btn" align="center">Order Now</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+{% endblock %}

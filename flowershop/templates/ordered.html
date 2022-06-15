@@ -1,0 +1,7 @@
+ {% load static %}
+ <link href="{%  static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+<center>
+     <a href=""></a>  <img src="{% static 'img/THANK YOU!.jpg' %}" alt="logimage">
+      <input type="Submit" value="Continue Shopping" class="btn btn-info" onclick="location.href='{% url 'order_confirm' %}'
+      ">
+    </center>
